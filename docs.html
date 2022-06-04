@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+    
+    <div id="doc-list">
+        <h1 id="heading">FEATHER IDE<br> 
+               User Mannuel
+        </h1>
+        <ul>
+        
+           <li><a href="#gettting-started" style=" text-decoration: none;">Getting started</a></li>
+             <li><a href="#user-interface" style=" text-decoration: none;">User Interface</a></li>
+            <li><a href="#user-guide" style=" text-decoration: none;">User Guide</a></li>
+        </ul>
+    </div>
+    <div id="doc-content">
+        <div id="getting-started"> 
+            <h1>Getting started</h1>
+            <P>Feather is a  source code editor for use under  Windows,Linux and Mac.
+                 It supports around 80 programming languages with syntax highlighting and code folding.
+                  It allows working with multiple open files in a single window.<br>
+                   Feather is available under GPL and distributed as free software.</P>
+             <h1>Install Feather</h1>
+               <ol type="1">
+                     <li>Download the installer file </li>
+                     <li>Run and Exicute the .exe file </li>                   
+               </ol>  
+            <h4>Supported Programming Languages</h4>  
+            <table border="2px" style="border-color: rgb(31, 29, 136)">
+                <tr>
+                    <th>Languages</th>
+                </tr>
+                <tr>
+                    <td>Action Script </td>
+                    <td>ADA </td>
+                    <td>ASN.1 </td>
+                    <td>APACHE_CONF</td>
+                    <td>ASCIIDOC</td>
+                    
+                </tr>
+                <tr>
+                    <td>AutoHotKey</td>
+                    <td>BatchFile</td>
+                    <td>C9Search</td>
+                    <td>C_Cpp</td>
+                    <td>Cirru</td>
+                    
+                
+                </tr>
+                <tr>
+                    <td>Cobol</td> 
+                    <td>coffee</td>
+                    <td>ColdFusion</td>
+                    <td>CSharp</td>
+                    <td>CSS</td>
+                    
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>Dart</td>
+                    <td>Diff</td>
+                    <td>Dockerfile</td>
+                    <td>Dot</td>
+                    
+
+                </tr>
+                <tr>
+                    <td>DummySyntax</td>
+                    <td>Eiffel</td>
+                    <td>EJS</td>
+                    <td>Elixir</td>
+                    <td>Elm</td>
+                    
+                </tr>
+                <tr>
+                    <td>Forth</td>
+                    <td>FTL</td>
+                    <td>Gcode</td>
+                    <td>Gherkin</td>
+                    <td>Gitignore</td>
+                    
+
+                </tr>
+                <tr>
+                    <td>golang</td>
+                    <td>Groovy</td>
+                    <td>HAML</td>
+                    <td>Handlebars</td>
+                    <td>Haskell</td>
+                
+                </tr>
+                <tr>
+                    <td>HTML</td>
+                    <td>HTML_Ruby</td>
+                    <td>INI</td>
+                    <td>Io</td>
+                    <td>Jack</td>
+                
+                </tr>
+                <tr>
+                    <td>Java</td>
+                    <td>JavaScript</td>
+                    <td>JSON</td>
+                    <td>JSONiq</td>
+                    <td>JSP</td>
+                                </tr>
+                <tr>
+                    <td>Julia</td>
+                    <td>LaTeX </td>
+                    <td>LESS</td>
+                    <td>Liquid</td>
+                    <td>Lisp</td>
+                
+                </tr>
+                <tr>
+                    <td>Python</td>
+                    <td>Php </td>
+                    <td>Perl</td>
+                    <td>Ruby</td>
+                    <td>Typescript</td>
+                
+                </tr>
+                <tr>
+                    <td>Vbscript</td>
+                    <td>Xml </td>
+                
+                </tr>
+                
+            </table>  
+        </div>
+        <div id="user-interface">
+               <h1>USER INTERFACE</h1>
+               <img src="../Assests/UIscreenShot.png" alt="ui-img" width="650px" height="450px">
+            <h4>Layouts</h4>
+            <ul type="disc">
+                  <li>MenuBar</li>
+                  menubar contains different operation like openfile,save etc.
+                  It includes all the menus for the app.
+                  <li>ActivityBar</li>
+                  Located on the far left-hand side, this lets you switch between views and gives you additional context-specific indicators,<br>
+                   like the number of outgoing changes when Git is enabled.
+                   <li>Editor</li>
+                   The main area to edit your files. You can open different files and edit with syntax highlighting and code suggestion .
+                   <li>ConsoleBar</li>
+                   console popup area where result of the code shown below the consoleBar.
+            </ul>
+
+        </div>
+        <div id="user-guide">
+            <h1>USER GUIDE</h1>
+            <li><b>Basic Editing</b></li>
+            Feather is an editor first and foremost, and includes the features you need for highly productive source code editing. 
+            This topic takes you through the basics of the editor and helps you get moving with your code.
+        <h5>Multiple selection</h5>
+           <p>
+             FEATHER supports multiple cursors for fast simultaneous edits. You can add secondary cursors (rendered thinner) with<b>Ctrl+Alt+Click</b> . Each cursor operates independently based on the context it sits in.
+             A common way to add more cursors is with Ctrl+Alt+Down or Ctrl+Alt+Up that insert cursors below or above.
+           </p>
+           <img src="../Assests/mtcursor.gif" alt="Multi-cursor" width="550px" height="250px"> 
+        <h5>Save/Save As</h5>
+        <p>
+          By default FEATHER requires an explicit action to save your changes to disk to existing file,<b>Ctrl+s</b> .
+          But you want to save the code in new file then you can use  save As by <b>Ctrl+Shift+s</b> or from the menu bar.
+        </p>
+        <h5>Find words</h5>
+        <p>
+            VS Code allows you to quickly find text and replace in the currently opened file.
+             Press Ctrl+F to open the Find Widget in the editor, search results will be highlighted in the editor
+        </p>
+        <img src="../Assests/resize-find-widget.gif" alt="find words" width="550px" height="250px">
+        <h5> Code folding</h5>
+        <P>
+            You can fold regions of source code using the folding icons on the gutter between line numbers and line start.
+             Move the mouse over the gutter and click to fold and unfold regions. 
+        </P>
+        <img src="../Assests/code-fold.gif" alt="" width="550px" height="250px">
+        <li><b>Compilor</b></li>
+        <p>
+            source code written in a high-level language into a set of machine-language instructions that can be understood by a digital computer's CPU. 
+           FEATHER  Compilers are very large programs, with error-checking and other abilities .Main feature of the Feather compilor is we get output without
+           saving the file  in simple way.
+           FEATHER support mainly 4 compilors
+           <ul type="disc">
+               <li>C</li>
+               <li>C++</li>
+               <li>PYTHON</li>
+               <li>JAVA</li>
+           </ul>
+
+        </p>
+           <h6>STEP 1</h6>
+               <p>
+                   click on the compilor icon(third icon) and click on the compior dropdown to show list of compilors.
+               </p>
+           <img src="../Assests/compilor1.jpeg" alt="" width="550px" height="250px">
+           <h6>STEP 2</h6>
+           <p>
+               select the compilor and press RUN button to show the results on bottom scrollup console.
+           </p>
+           <img src="../Assests/compilor2.jpeg" alt="" width="500px" height="300px">
+           <li><b>Terminal</b></li>
+           <p>
+            The terminal gives you access to your computer's file and folder structure — the same way that you click through Finder or Explorer,
+             you navigate using your keyboard in the terminal. It definitely takes some time getting used to,
+             but developing your mental model in this area is foundational to working in code.
+             press <b>Ctrl+t</b> or select from menubar<b> tools >> Terminal</b> or from left-ActivityBar
+           </p>
+           <img src="../Assests/terminal.jpeg" alt="" width="550px" height="300px">
+           <li><b>Browser</b></li>
+           <p>
+               Feather has some special feature which it have integrated browser on it for surffing some code in internet.
+                Browser can be opend using the shortcut <b>Ctrl+Shift+b</b> or select from menubar <b>tools >> Browser</b> 
+           </p>
+           <img src="../Assests/browser.jpeg" alt="" width="550px" height="300px">
+           <li><b>Music</b></li>
+           <p>
+            Music has the ability to bring us joy and comfort, to motivate us and to help us relax. It has the power to transport us back in time, to calm our worried minds or boost our moods.
+             There really is a song for every emotion.Thereby ,  company can improve their productivity and also an enjoyment for the programmers.
+             That's why FEATHER is also called programmers IDE.
+             Music player can be launched using the shorcut <b>Ctrl+Shift+m</b> or select from menubar <b>tools >> Music</b> or from the left-ActivityBar
+            You can play and pause music ,volume up and down etc supported .
+            </p>
+            <img src="../Assests/music.jpeg" alt="" width="550px" height="300px">
+        </div>
+    </div>
+    
+</body>
+</html>

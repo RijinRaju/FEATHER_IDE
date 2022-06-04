@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <style type="text/css" media="screen">
+      :root {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .titlebar {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+      }
+    </style>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script src="./ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../JavaScript/collapse.js"></script>
+    <script src="./FileOperations.js"></script>
+    <script src="../JavaScript/console.js"></script>
+    <script src="../JavaScript/newFile.js"></script>
+
+<script src="./ace-builds/src/ace.js"></script>
+<script src="./ace-builds/src/ext-modelist.js"></script>
+<script src="./ace-builds/src/ext-language_tools.js"></script>
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+    <!--left collapse menubar content-->
+    <div id="sidebar" class="sidebar">
+      <div class="v1">
+        <div class="v1-fil" id='v1-fil' style="color: white;">
+          <div class="dropdown" id="dropdown">
+            <button onclick="myFunction()" class="dropbtn"><i class="bi bi-folder" style="color: blue;"></i> FILE
+              EXPLORER</button>
+
+            <div id="myDropdown" class="dropdown-content">
+              <button onclick="myFunction4()" class="dropbtn">FILES</button>
+              <ul id="fileSelect" class="dropdown-content" size="20px">
+              </ul>
+            </div>
+          </div>
+
+          <div class="dropdown2" id="dropdown2">
+            <button onclick="myFunction2()" class="dropbtn2"><i class="bi bi-braces" style="color: red;"></i>
+              COMPILERS</button>
+            <div id="myDropdown2" class="dropdown-content">
+
+              <select id="languages" class="languages" size="10px">
+                <option value="c"> C </option>
+                <option value="cpp"> CPP </option>
+                <option value="python"> python </option>
+                <option value="node"> java </option>
+              </select>
+              <button id="v1-btn" onclick="execute()"
+                style="border: inherit; background-color: darkorchid; ">Run</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="menu">
+        <span class="menu-icon " id="menu-icon" onclick="toggleNav()"><i class="bi bi-list"></i></span>
+      </div>
+      <div class="files">
+        <span class="files-icon" onclick="fileShow()"><i class="bi bi-file-earmark"></i></span>
+      </div>
+      <div class="compilers">
+        <span class="compilers-icon" onclick="compilerShow()"><i class="bi bi-code-slash"></i></span>
+      </div>
+      <div class="assistant">
+        <span class="assistant-icon" onclick="musicClick()"><i class="bi bi-music-note-beamed"></i></span>
+      </div>
+      <div class="terminal">
+        <span class='terminal-icon' onclick="terminalClick()"><i class="bi bi-terminal"></i></span>
+      </div>
+      <div class="plusNewFile">
+        <span class='plus-icon' onclick="addNewFile()"><i class="bi bi-pencil-square"></i></span>
+      </div>
+      
+
+    </div>
+    <!-- ace editor and topmenubar -->
+    <div class="main" id="main">
+      <div class="container">
+        <div class="container__right">
+
+          <div class="container__top" id="container__top">
+
+            <div class="tabgroup">
+
+              <div class=col-12>
+
+                <ul id="ul">
+
+                  <li id="defaultTab"></li>
+                </ul>
+              </div>
+            </div>
+         <div id="editor"></div>
+          </div>
+          <div class="resizer" id="resizer" data-direction="vertical">
+            <span id="lineCount"></span>
+            <span id="outputCloseBtn" onclick="opclose()"><i class="bi bi-chevron-double-down"></i></span>
+          </div>
+          <div class="container__bottom" id="container__bottom">
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="./tab.js"></script>
+    <script src="../JavaScript/terminal.js"></script>
+  </body>
+
+</html>
