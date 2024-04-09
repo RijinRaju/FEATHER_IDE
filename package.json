@@ -1,0 +1,84 @@
+{
+  "name": "Feather Integrated Development Environment",
+  "version": "1.0.0",
+  "description": "integrated development environment using electron js for cross platform ",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "dist": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rebuild": "electron-rebuild",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "Rijin,Yedhu,Amal",
+  "license": "",
+  "dependencies": {
+    "@electron/remote": "^2.0.8",
+    "@folder/readdir": "^3.1.0",
+    "@picovoice/picovoice-node": "^2.1.3",
+    "about-window": "^1.15.2",
+    "ayu-ace": "^2.0.4",
+    "compile-run": "^2.3.4",
+    "custom-electron-titlebar": "latest",
+    "directory-tree": "^3.2.1",
+    "electron-rebuild": "^3.2.7",
+    "electron-reload": "^2.0.0-alpha.1",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^8.0.1",
+    "electron-tabs": "^0.15.0",
+    "electron-watch": "^1.0.9",
+    "express": "^4.17.2",
+    "file-manager-js": "^3.1.6",
+    "fileexplorerjs": "^1.1.0",
+    "fs-tree-utils": "^0.1.8",
+    "node-pty": "^0.10.1",
+    "node-pty-prebuilt-multiarch": "^0.10.1-pre.4",
+    "nodemon": "^2.0.15",
+    "python-shell": "^3.0.1",
+    "react-fs-tree": "^0.2.0",
+    "readdir-enhanced": "^6.0.4",
+    "tabs": "^0.2.0",
+    "tree-node-cli": "^1.5.2",
+    "treeify": "^1.1.0",
+    "vamtiger-get-directory-content": "^0.0.35",
+    "xterm": "^4.8.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "electron": "13"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "./src/icons/win/icon.ico"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "Feather Integrated Development Environment"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}

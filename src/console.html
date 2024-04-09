@@ -1,0 +1,506 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>HTML DOM - Create resizable split views</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- <link rel="stylesheet" href="/css/demo.css" /> -->
+        <!-- <link rel="preconnect" href="https://fonts.gstatic.com" /> -->
+        <script src="./ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter&family=Source+Code+Pro&display=swap"
+        />
+        <!-- <link rel="stylesheet" href="./index.css"> -->
+        <style>
+            .container {
+                overflow: hidden;
+                display: flex;
+                /* margin-top: 70vh; */
+                /* Misc */
+                border: 2px solid #cbd5e0;
+                height: 100%;
+                width: 100%;
+            }
+            .resizer[data-direction='horizontal'] {
+                
+                background-color: #4b4e50;
+                cursor: ew-resize;
+                height: 100%;
+                width: 2px;
+                z-index: 999;
+            }
+            .resizer[data-direction='vertical'] {
+                background-color: #cbd5e0;
+                cursor: ns-resize;
+                height: 5px;
+                width: 100%;
+                z-index: 999;
+                
+            }
+            .container__left {
+            
+                width: 10%;
+
+                            align-items: center;
+                display: flex;
+                justify-content: center;
+                z-index: 999;
+    
+            }
+            .container__right {
+            
+                flex: 1;
+
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .container__top {
+                /* Initial height */
+                height: 80vh;
+                width: 100%;
+                /* Misc */
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            
+            }
+            .container__bottom {
+                flex: 1;
+                z-index: 999;
+                width: 100%;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                background-color: black;
+            }
+            #editor { 
+  position: absolute;
+  top: 0px;
+  right: 0;
+  bottom: 14vh;
+  left: 25vh;
+  overflow: hidden;
+}
+.sidebar{
+    display: flex;
+  position: fixed;
+  top: 2;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  /* background-color:#282c34 ;  */
+  background-color: #31353a;
+  transition-delay: 1s;
+  padding: 6px 14;
+  overflow-y: hidden;
+
+} 
+
+.content{
+  position: relative;
+}
+/* collapse sidebar  icons*/
+
+.menu-icon{
+  font-size: 30px;
+  margin-left: 10px;
+  border-left: #07101f;
+  color:#737880;
+  }
+  .menu-icon:hover{
+  cursor: pointer;
+  animation-duration: 2s;
+  color:#ffff;
+  }
+  .menu{
+    margin-top: -105vh;
+    position: absolute;
+  }
+
+.files-icon{
+  font-size: 25px;
+margin-left: 10px;
+border-left: #07101f;
+color:#737880;
+}
+.files{
+  margin-top: -97vh;
+  position: absolute;
+}
+.files-icon:hover{
+  cursor: pointer;
+  animation-duration: 2s;
+  color:#ffff;
+  }
+
+.compilers-icon{
+  font-size: 25px;
+margin-left: 10px;
+border-left: #07101f;
+color:#737880;
+}
+.compilers{
+  margin-top: -88vh;
+  position: absolute;
+}
+.compilers-icon:hover{
+  cursor: pointer;
+  animation-duration: 2s;
+  color:#ffff;
+  }
+  .assistant-icon{
+    font-size: 25px;
+  margin-left: 10px;
+  border-left: #07101f;
+  color:#737880;
+  }
+  .assistant{
+    margin-top: -79vh;
+    position: absolute;
+  }
+  .assistant-icon:hover{
+    cursor: pointer;
+    animation-duration: 2s;
+    color:#ffff;
+    }
+
+.terminal{
+  margin-top: -69vh;
+  position:absolute;
+}
+.terminal-icon{
+  font-size: 25px;
+margin-left: 10px;
+border-left: #07101f;
+color:#737880;
+}
+.terminal-icon:hover{
+  cursor: pointer;
+  animation-duration: 2s;
+  color:#ffff;
+  }
+.settings-icon{
+  font-size: 25px;
+margin-left: 10px;
+border-left: #07101f;
+color:#737880;
+}
+.settings{
+  margin-top: -180px;
+  position: absolute;
+}
+.settings-icon:hover{
+  cursor: pointer;
+  animation-duration: 2s;
+  color:#ffff;
+  }
+
+.menu-btn{
+  margin-left: 30px;
+}
+
+.top-mnbar{
+  position:relative;
+  height: 30px;
+  width: 100%;
+  background-color:#2c2e31;
+}
+
+
+
+.v1{
+z-index: 1;
+margin: 50px;
+ background-color: #21252b; 
+height: 100vh;
+margin-right: 0px;
+margin-top: 0px;
+overflow-x: scroll;
+overflow-y: scroll;
+overscroll-behavior-inline:inherit;
+}
+.v1-fil {
+  color:#f7f7f7;
+  margin: 10px;
+}
+
+/* styling the apps entire select tag..................... */
+
+select.languages option:hover {
+  box-shadow: 0 0 10px 100px darkorchid inset;
+}
+::-webkit-scrollbar{
+  width: 2px;
+}
+::-webkit-scrollbar-track{
+  background: transparent;
+}
+::-webkit-scrollbar-thumb{
+  background: #f7f7f7;
+}
+::-webkit-scrollbar-thumb:hover{
+  background-color: #f7f7f7;
+}
+
+/* file contents...................................... */
+.fileSelect, .languages,#newFileList{
+  background-color: #43464b;
+  width: 18rem;
+  border: 0;
+  outline: 0px;
+  padding-left: 20px;
+  direction: ltr;
+  overflow-x:hidden;
+
+}
+.fileSelect   :hover{
+  box-shadow: 0 0 10px 100px darkorchid inset;
+}
+
+#v1-btn{
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 10rem;
+  cursor: pointer;
+}
+
+
+option{
+  position: relative;
+  margin-top: 6px;
+  cursor: pointer;
+  height: 20px;
+}
+option :focus{
+  background-color: darkorchid;
+}
+.dropbtn {
+  background-color: #333b41;
+  color: white;
+   font-size: 12px;
+  border: none;
+  cursor: pointer;
+  height: 20px;
+  width: 180px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: darkorchid;
+}
+
+.dropdown  {
+  position: relative;
+  display: block;
+  visibility: visible;
+
+  
+}
+/* .showFile{
+  display: block;
+} */
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  min-width: 160px;
+  overflow: hidden;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.show {display: block;}
+.dropdown2 {
+  position: relative;
+  display: none;
+  margin-top: -10px;
+  visibility:visible;
+  z-index: 999;
+}
+.dropdown-content2{
+  display: none;
+  position: relative;
+  min-width: 160px;
+  overflow: hidden;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.dropbtn2 {
+  background-color: #333b41;
+  color: white;
+  margin-top: 20px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  height: 20px;
+  width: 180px;
+  text-align: left;
+  
+}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="container__left">
+            <div class="sidebar">
+                    <div class="v1">
+                      <div class="v1-fil" id='v1-fil' style="color: white;">
+                        <div class="dropdown" id="dropdown">
+                          <button onclick="myFunction()" class="dropbtn"><i class="bi bi-folder" style="color: blue;"></i> FILE EXPLORER</button>
+                          
+                          <div id="myDropdown" class="dropdown-content">
+                            <button onclick="myFunction3()" class="dropbtn">UNTITLED EDITORS</button>
+                              <li id="newFileList" class="dropdown-content">
+                                <span class="closeTabIcon" id="closeTabIcon"></span>
+                                <div class="fileNameSpan">
+                                </div>
+                              </li>
+                            <button onclick="myFunction4()" class="dropbtn">FILES</button>
+                            <ul id="fileSelect" class="dropdown-content" size="20px">
+                            </ul>
+                          </div>
+                        </div>
+                         
+                        <div class="dropdown2" id="dropdown2">
+                          <button onclick="myFunction2()" class="dropbtn2"><i class="bi bi-braces" style="color: red;"></i>
+                            COMPILERS</button>
+                          <div id="myDropdown2" class="dropdown-content">
+              
+                            <select id="languages" class="languages" size="10px">
+                              <option value="c"> C </option>
+                              <option value="cpp"> CPP </option>
+                              <option value="php"> javascript </option>
+                              <option value="python"> python </option>
+                              <option value="node"> java </option>
+                            </select>
+                            <button id="v1-btn" onclick="execute()"   style="border: inherit; background-color: darkorchid; ">Run</button>
+                          </div>
+                        </div>
+              
+                      </div>
+                      
+                    </div>
+                    <div class="menu">
+                      <span class="menu-icon " id="menu-icon" onclick="toggleNav()"><i class="bi bi-list"></i></span>
+                    </div>
+                    <div class="files">
+                      <span class="files-icon" onclick="fileShow()"><i class="bi bi-file-earmark"></i></span>
+                    </div>
+                    <div class="compilers">
+                      <span class="compilers-icon" onclick="compilerShow()"><i class="bi bi-code-slash"></i></span>
+                    </div>
+                    <div class="assistant">
+                      <span class="assistant-icon" onclick="speak()"><i class="bi bi-robot"></i></span>
+                    </div>
+                    <div class="terminal">
+                      <span class='terminal-icon' onclick="terminalClick()"><i class="bi bi-terminal" ></i></span>
+                    </div>
+                    <div class="settings">
+                      <span class='settings-icon' onclick=""><i class="bi bi-gear" ></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="resizer" data-direction="horizontal"></div>
+            <div class="container__right">
+                <div class="container__top" >
+                    <div id="editor"></div>
+                </div>
+                <div class="resizer" data-direction="vertical"></div>
+                <div class="container__bottom">Bottom</div>
+            </div>
+        </div>
+
+        <script>
+          
+          var editor = ace.edit("editor");
+                    editor.setTheme("ace/theme/dracula");
+                    editor.session.setMode("ace/mode/javascript");
+                    editor.setShowPrintMargin(false);
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const resizable = function (resizer) {
+                    const direction = resizer.getAttribute('data-direction') || 'horizontal';
+                    const prevSibling = resizer.previousElementSibling;
+                    const nextSibling = resizer.nextElementSibling;
+
+                    // The current position of mouse
+                    let x = 0;
+                    let y = 0;
+                    let prevSiblingHeight = 0;
+                    let prevSiblingWidth = 0;
+
+                    // Handle the mousedown event
+                    // that's triggered when user drags the resizer
+                    const mouseDownHandler = function (e) {
+                        // Get the current mouse position
+                        x = e.clientX;
+                        y = e.clientY;
+                        const rect = prevSibling.getBoundingClientRect();
+                        prevSiblingHeight = rect.height;
+                        prevSiblingWidth = rect.width;
+
+                        // Attach the listeners to `document`
+                        document.addEventListener('mousemove', mouseMoveHandler);
+                        document.addEventListener('mouseup', mouseUpHandler);
+                    };
+
+                    const mouseMoveHandler = function (e) {
+                        // How far the mouse has been moved
+                        const dx = e.clientX - x;
+                        const dy = e.clientY - y;
+
+                        switch (direction) {
+                            case 'vertical':
+                                const h =
+                                    ((prevSiblingHeight + dy) * 100) /
+                                    resizer.parentNode.getBoundingClientRect().height;
+                                prevSibling.style.height = `${h}%`;
+                                break;
+                            case 'horizontal':
+                            default:
+                                const w =
+                                    ((prevSiblingWidth + dx) * 100) / resizer.parentNode.getBoundingClientRect().width;
+                                prevSibling.style.width = `${w}%`;
+                                break;
+                        }
+
+                        const cursor = direction === 'horizontal' ? 'col-resize' : 'row-resize';
+                        resizer.style.cursor = cursor;
+                        document.body.style.cursor = cursor;
+
+                        prevSibling.style.userSelect = 'none';
+                        prevSibling.style.pointerEvents = 'none';
+
+                        nextSibling.style.userSelect = 'none';
+                        nextSibling.style.pointerEvents = 'none';
+                    };
+
+                    const mouseUpHandler = function () {
+                        resizer.style.removeProperty('cursor');
+                        document.body.style.removeProperty('cursor');
+
+                        prevSibling.style.removeProperty('user-select');
+                        prevSibling.style.removeProperty('pointer-events');
+
+                        nextSibling.style.removeProperty('user-select');
+                        nextSibling.style.removeProperty('pointer-events');
+
+                        // Remove the handlers of `mousemove` and `mouseup`
+                        document.removeEventListener('mousemove', mouseMoveHandler);
+                        document.removeEventListener('mouseup', mouseUpHandler);
+                    };
+
+                    // Attach the handler
+                    resizer.addEventListener('mousedown', mouseDownHandler);
+                };
+
+                // Query all resizers
+                document.querySelectorAll('.resizer').forEach(function (ele) {
+                    resizable(ele);
+                });
+            });
+        </script>
+    </body>
+</html>

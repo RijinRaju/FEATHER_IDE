@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>
+        Terminal
+    </title>
+
+     <link rel="stylesheet" href="xterm/css/xterm.css"/> 
+    <script  src="xterm/lib/xterm.js"></script> 
+    <script src="/JavaScript/terminal.js"></script>
+    <style>
+        ::-webkit-scrollbar {
+    display: none;
+    }
+    </style>
+</head>
+<body>
+
+<div id="terminal"></div>
+</body>
+
+    
+    <script >
+        
+            const ipc = require('electron').ipcRenderer;
+  
+
+
+  var term = new Terminal();
+  term.open(document.getElementById('terminal'));
+  
+  
+  ipc.on("terminal indata", function(event, data) {
+      term.write(data);
+      
+  });
+  
+  term.onData(e => {
+      
+      ipc.send("terminal outdata", e);
+  });
+
+
+        </script>
+    
+
+    
+</body>
+</html>
